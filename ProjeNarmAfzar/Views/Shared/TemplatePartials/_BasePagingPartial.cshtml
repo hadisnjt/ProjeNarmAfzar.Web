@@ -1,0 +1,9 @@
+﻿@model ProjeNarmAfzar.Domain.ViewModels.Paging.PagingViewModel
+
+    <ul class="pagination">
+        @for (int i = Model.StartPage; i <= Model.EndPage; i++)
+        {
+            <li class="@(Model.Page == i ? "active" : "")"><a>@i</a></li>
+        }
+    </ul>
+

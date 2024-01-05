@@ -1,0 +1,34 @@
+﻿@using ProjeNarmAfzar.Application.Statics
+@model ProjeNarmAfzar.Domain.ViewModels.Video.SingleVideoViewModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+ <div class="container">
+            <section class="term-content">
+                <header><h1> به روز ترین فیلم هارا از ما بخواهید </h1></header>
+            <div class="row">
+
+                <div class="col-md-8 col-sm-12 col-xs-12 pull-left">
+                    
+                    <section class="term-description">
+                        <img src="@PathTools.VideoOriginImage@Model.ImageName">
+
+                        <h2> @Model.Title </h2>
+                        <p>
+                            @Model.Description
+                        </p>
+                        <h2> لینک های دانلود : </h2>
+                        <ul>
+                        
+                        </ul>
+                    </section>
+                </div>
+            </div>
+    </section>
+ </div>  
+ 
+
+
+
+

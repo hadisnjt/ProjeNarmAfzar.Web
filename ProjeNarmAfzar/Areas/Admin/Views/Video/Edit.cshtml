@@ -1,0 +1,96 @@
+﻿@using ProjeNarmAfzar.Domain.Model.Video
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using ProjeNarmAfzar.Application.Statics
+@model ProjeNarmAfzar.Domain.ViewModels.Video.EditVideoViewModel
+@{
+    ViewData["Title"] = "ویرایش ویدیو";
+    var categories = ViewBag.categories as List<VideoCategory>;
+}
+
+
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <!--Bootstrap Tags Input-->
+    <script src="/admin/assets/js/tagsinput/bootstrap-tagsinput.js"></script>
+
+
+}
+
+<form asp-area="Admin" asp-controller="Video" asp-action="Edit" method="post" asp-route-videoId="@Model.Id" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id"/>
+    <input type="hidden" asp-for="VideoImage"/>
+    <input type="hidden" value="@ViewBag.referer" name="referer"/>
+    <div class="row">
+        <div class="col-lg-8 col-sm-12">
+            <div class="widget">
+                <div class="widget-header bordered-bottom bordered-blue">
+                    <span class="widget-caption">اطلاعات اصلی</span>
+                </div>
+                <div class="widget-body">
+                    <div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>نام ویدیو</label>
+                                    <input class="form-control" asp-for="Title">
+                                    <span class="text-danger" asp-validation-for="Title"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>دسته بندی</label>
+                                    <select class="form-control" asp-for="VideoCategoryId">
+                                        @foreach (var category in categories)
+                                        {
+                                            <option value="@category.Id">@category.Title</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="VideoCategoryId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label> تگ های ویدیو </label>
+                                    <input asp-for="Tags" type="text" data-role="tagsinput" placeholder=" پس از تایپ enter بزنید"/>
+                                </div>
+                                <span asp-validation-for="Tags" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label> توضیحات</label>
+                                    <textarea ckeditor="2" rows="5" asp-for="Description"></textarea>
+                                    <span class="text-danger" asp-validation-for="Description"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-success">ویرایش ویدیو </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+            <div class="widget">
+                <div class="widget-header bordered-bottom bordered-blue">
+                    <span class="widget-caption">تصویر ویدیو</span>
+                </div>
+                <div class="widget-body">
+                    <div>
+                        @if (!string.IsNullOrEmpty(@Model.VideoImage))
+                        {
+                            <img ImageFile="1" style="width:100%" src="@PathTools.VideoOriginImage@Model.VideoImage"/>
+                        }
+                        else
+                        {
+                            <img ImageFile="1" style="width:100%" src="@PathTools.DefaultImage"/>
+                        }
+                        <input asp-for="Image" accept=".png,.jpg,.jpeg" ImageInput="1" type="file"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ProjeNarmAfzar.Domain.Model.Video.VideoCategory>
+@{
+    ViewData["Title"] = "لیست دسته بندی ها";
+}
+
+<div>
+    <div class="well with-header with-footer">
+        <div class="header bordered-pink">
+            لیست دسته بندی ها
+        </div>
+        <div>
+            <a asp-area="Admin" asp-controller="VideoCategory" asp-action="Create" class="btn btn-success"> ثبت دسته بندی جدید</a>
+        </div>
+        @if (Model != null && Model.Any())
+        {
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            <i class="fa fa-briefcase"></i> عنوان
+                        </th>
+                        <th class="hidden-xs">
+                            <i class="fa fa-user"></i> عنوان در url
+                        </th>
+                        <th>
+                            <i class="fa fa-shopping-cart"></i> دستورات
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var category in Model)
+                    {
+                        <tr>
+                            <td>
+                               @category.Title
+                            </td>
+                            <td >
+                               @category.TitleInUrl
+                            </td>
+                            <td>
+                                <a asp-area="Admin" asp-controller="VideoCategory" asp-action="Edit" asp-route-id="@category.Id" class="btn btn-default btn-xs purple"><i class="fa fa-edit"></i>  ویرایش دسته بندی </a>
+                                <a asp-area="Admin" asp-controller="VideoCategory" asp-action="Delete" class="btn btn-default btn-xs purple"><i class="fa fa-edit"></i>  حذف دسته بندی </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+   
+        }
+        else
+        {
+           <partial name="_NotFoundItemPartial"/>
+        }
+    </div>
+</div>
+

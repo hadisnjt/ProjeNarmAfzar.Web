@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html class="no-js" dir="rtl" lang="fa-IR">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewData["Title"] </title>
+    <partial name="TemplatePartials/_MetaTags" />
+    <partial name="TemplatePartials/_Styles" />
+    @RenderSection("Styles",false)
+    <script src="/js/jquery.min.js"></script>
+</head>
+<body>
+    <script src="/js/modernizr-custom.js"></script>
+    <partial name="TemplatePartials/_Landing" />
+<!-- content -->
+    @RenderBody()
+    <!-- /content -->
+    <!-- footer -->
+    
+    <!-- /footer -->
+    <partial name="TemplatePartials/_JSRefrences" />
+    @RenderSection("Scripts",false)
+</body>
+</html>

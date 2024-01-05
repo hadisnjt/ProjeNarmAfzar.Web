@@ -1,0 +1,38 @@
+﻿@using ProjeNarmAfzar.Application.Statics
+@using ProjeNarmAfzar.Application.Utilities.ExtensionMethods
+@model ProjeNarmAfzar.Domain.ViewModels.Video.FilterVideoViewModel
+@{
+    ViewData["Title"] = "ویدیو ها";
+}
+
+<main id="home-page">
+    <div class="container">
+        <section class="terms-items">
+            <header>
+                <h2> به روز ترین فیلم های ما </h2>
+            </header>
+            <div class="row">
+                @if (Model.Entities != null && Model.Entities.Any())
+                {
+                    <!-- col -->
+                    @foreach (var video in Model.Entities)
+                    {
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 term-col">
+                            <article>
+                                <a asp-area="" asp-controller="Video" asp-action="VideoDetail" asp-route-videoId="@video.Id" asp-route-title="@video.Title.FIxUrlForTitle()" class="img-layer"><img height="250px" src="@PathTools.VideoOriginImage@video.ImageName"></a>
+                                <h2><a asp-area="" asp-controller="Video" asp-action="VideoDetail" asp-route-videoId="@video.Id" asp-route-title="@video.Title.FIxUrlForTitle()"> @video.Title </a></h2>
+                            </article>
+                        </div>
+                    }
+                    <!-- /col -->
+                    <div class="clearfix"></div>
+                    <partial name="TemplatePartials/_BasePagingPartial" model="@Model.GetCurrentPaging()"/>
+                }
+            </div>
+        </section>
+    </div>
+</main>
+@section Scripts
+    {
+    <script src="/admin/custom/js/Custom.js"></script>
+}

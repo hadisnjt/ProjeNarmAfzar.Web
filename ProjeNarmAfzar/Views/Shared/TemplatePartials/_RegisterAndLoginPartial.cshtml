@@ -1,0 +1,22 @@
+﻿
+<div class="col-sm-6 col-xs-12">
+    <div class="clientarea">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="loggein">
+                <i class="zmdi zmdi-account"></i><a asp-area="" asp-controller="Home"
+                                                    asp-action=""></a>
+            </div>
+
+        }
+        else
+        {
+            <div class="signin ">
+                <i class="zmdi zmdi-account"></i>
+                <a asp-area="" asp-controller="" asp-action=""> ورود </a> /
+                <a asp-area="" asp-controller="" asp-action=""> عضویت </a>
+            </div>
+        }
+    </div>
+</div>
+
